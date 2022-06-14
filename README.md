@@ -5,11 +5,22 @@ This repository consists the supplemental materials of the paper "Explainable ex
 
 # Data
 
-We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. The following function is used for scraping the data from leagues over 7 seasons:
+We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. The following function is used for scraping the data from the leagues over 7 seasons:
 
 ```
-ligue1_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2020)
+ligue1_2020_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2020)
+ligue1_2019_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2019)
+...
+ligue1_2014_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2014)
 ```
+
+Then combine them as `dataset`:
+
+```
+dataset <- rbind(ligue1_2020_shot_location, ligue1_2019_shot_location, ...)
+```
+
+Do not forget that this steps takes a few hours depending on the processing power of your computer!
 
 
 # Pre-processing of the raw dataset
@@ -17,8 +28,6 @@ ligue1_shot_location <- understat_league_season_shots(league = "Ligue 1", season
 This section introduces the dataset and how it is pre-processed. First data is imported from a .csv file is `raw_data`, then the features `distanceToGoal` and `angleToGoal` are extracted from the coordinated `X` and `Y`. The features `status`, `distanceToGoal`, `angleToGoal`, `h_a`, `shotType`, `lastAction`, `minute`, `league`, and `season` are prepared for analysis and modeling.
 
 ```
-dataset <- read.csv("raw_data.csv")
-
 shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
   mutate(status = ifelse(result == "Goal", 1, 0)) %>%
   mutate(distanceToGoal = sqrt((105 - (X * 105)) ^ 2 + (32.5 - (Y * 68)) ^ 2)) %>%
