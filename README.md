@@ -90,7 +90,7 @@ ggplot(shot_vis,
 
 ![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png)
 
-<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png" width="120">
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png" width="1200">
 
 
 ### Figure 3: The aggregated xG profiles of Schalke 04 and Bayern Munich for angle and distance to goal in the match is played on Jan 24, 2021
