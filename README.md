@@ -122,7 +122,7 @@ ap_dtg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
 plot(ap_dtg_schalke, ap_dtg_bayern)
 ```
 
-<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/dtg.png" width="800">
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/dtg.png" width="600">
 
 
 ```{r}
