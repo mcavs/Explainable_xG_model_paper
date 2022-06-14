@@ -88,8 +88,6 @@ ggplot(shot_vis,
              scales="free_x") 
 ```
 
-![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png)
-
 <img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png" width="800">
 
 
@@ -124,7 +122,8 @@ ap_dtg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
 plot(ap_dtg_schalke, ap_dtg_bayern)
 ```
 
-![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/dtg.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/dtg.png" width="800">
+
 
 ```{r}
 # creating aggregated profiles for the shots of Schalke 04 and Bayern Munich for "angleToGoal" feature
