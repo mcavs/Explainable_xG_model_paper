@@ -138,7 +138,7 @@ ap_atg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
 plot(ap_atg_schalke, ap_atg_bayern)
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/atg.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/atg.png" width="600">
 
 
 ### Figure 4: The End-of-season statistics of Burak Yilmaz (BY), Lionel Messi (LM), and Robert Lewandowski (RL) in the season of 2020-21
@@ -180,7 +180,8 @@ ap_dtg_rl <- aggregate_profiles(cp_rl,
 plot(ap_dtg_by, ap_dtg_lm, ap_dtg_rl)
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_dtg.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_dtg.png" width="600">
+
 
 ```{r}
 # creating aggregated profiles for the shots of Burak Yilmaz, Lionel Messi, and Robert Lewandowski for "angleToGoal" feature
@@ -198,7 +199,8 @@ ap_atg_rl <- aggregate_profiles(cp_rl,
 plot(ap_atg_by, ap_atg_lm, ap_atg_rl)
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_atg.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_atg.png" width="600">
+
 
 ### Figure 5: The behavior comparison of the random forest models trained on original, over-sampled, and under-sampled data in terms of PDP curves
 
@@ -230,7 +232,8 @@ over_rf_explainer <- explain(model = over_model$model3,
      model_profile(over_rf_explainer,  variables = "angleToGoal"))
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/angle.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/angle.png" width="600">
+
 
 ```{r}
 # drawing the comparison plot of PDPs for "distanceToGoal" feature
@@ -239,7 +242,8 @@ plot(DALEX::model_profile(org_rf_explainer,   variables = "distanceToGoal"),
      DALEX::model_profile(over_rf_explainer,  variables = "distanceToGoal"))
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/distance.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/distance.png" width="600">
+
 
 ```{r}
 # drawing the comparison plot of PDPs for "minute" feature
@@ -248,4 +252,4 @@ plot(DALEX::model_profile(org_rf_explainer,   variables = "minute"),
      DALEX::model_profile(over_rf_explainer,  variables = "minute"))
 ```
 
-![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/minute.png)
+<img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/minute.png" width="600">
