@@ -113,3 +113,69 @@ plot(ap_atg_schalke, ap_atg_bayern)
 ```
 
 ![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/atg.png)
+
+
+## Figure 4: The End-of-season statistics of Burak Yilmaz (BY), Lionel Messi (LM), and Robert Lewandowski (RL) in the season of 2020-21
+
+```{r}
+# subsetting the shots of Burak Yilmaz (by), Lionel Messi (lm) 
+# and Robert Lewandowski (rl) in the season of 2020-21
+selected_observations_by <- shot_stats %>%
+  filter(player_id == 8637, season == 2020)
+selected_observations_lm <- shot_stats %>%
+  filter(player_id == 2097, season == 2020)
+selected_observations_rl <- shot_stats %>%
+  filter(player_id == 227, season == 2020)
+
+# creating ceteris-paribus profiles for the shots of 
+# Burak Yilmaz, Lionel Messi, and Robert Lewandowski
+cp_by <- ceteris_paribus(over_model$model3,
+                         selected_observations_by)
+cp_lm <- ceteris_paribus(over_model$model3,
+                         selected_observations_lm)
+cp_rl <- ceteris_paribus(over_model$model3,
+                         selected_observations_rl)
+
+# re-labeling the profiles
+cp_by$`_label_` <- "Burak Yilmaz"
+cp_lm$`_label_` <- "Lionel Messi"
+cp_rl$`_label_` <- "Robert Lewandowski"
+
+# creating aggregated profiles for the shots of 
+# Burak Yilmaz, Lionel Messi, and Robert Lewandowski
+# for "distanceToGoal" feature
+ap_dtg_by <- aggregate_profiles(cp_by,
+                                variables = "distanceToGoal",
+                                type = "partial")
+ap_dtg_lm <- aggregate_profiles(cp_lm,
+                                variables = "distanceToGoal",
+                                type = "partial")
+ap_dtg_rl <- aggregate_profiles(cp_rl,
+                                variables = "distanceToGoal",
+                                type = "partial")
+
+# drawing the comparison plot of APs for "distanceToGoal" feature
+plot(ap_dtg_by, ap_dtg_lm, ap_dtg_rl)
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_dtg.png)
+
+```{r}
+# creating aggregated profiles for the shots of 
+# Burak Yilmaz, Lionel Messi, and Robert Lewandowski
+# for "angleToGoal" feature
+ap_atg_by <- aggregate_profiles(cp_by,
+                                variables = "angleToGoal",
+                                type = "partial")
+ap_atg_lm <- aggregate_profiles(cp_lm,
+                                variables = "angleToGoal",
+                                type = "partial")
+ap_atg_rl <- aggregate_profiles(cp_rl,
+                                variables = "angleToGoal",
+                                type = "partial")
+
+# drawing the comparison plot of APs for "angleToGoal" feature
+plot(ap_atg_by, ap_atg_lm, ap_atg_rl)
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_atg.png)
