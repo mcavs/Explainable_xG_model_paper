@@ -62,3 +62,54 @@ ggplot(shot_vis,
 ```
 
 ![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png)
+
+
+## Figure 3: The aggregated xG profiles of Schalke 04 and Bayern Munich for angle and distance to goal in the match is played on Jan 24, 2021
+
+```{r}
+# subsetting the shots of Schalke 04 and Bayern Munich
+selected_observations_schalke <- shot_stats %>%
+  filter(h_a == "h", match_id == 15298)
+selected_observations_bayern <- shot_stats %>%
+  filter(h_a == "a", match_id == 15298)
+
+# creating ceteris-paribus profiles for the shots of Schalke 04 and Bayern Munich
+cp_schalke <- ingredients::ceteris_paribus(over_model$model3,
+                                           selected_observations_schalke)
+cp_bayern  <- ingredients::ceteris_paribus(over_model$model3,
+                                           selected_observations_bayern)
+
+# re-labeling the profiles
+cp_schalke$`_label_` <- "Schalke 04"
+cp_bayern$`_label_`  <- "Bayern Munich"
+
+# creating aggregated profiles for the shots of Schalke 04 and Bayern Munich
+# for "distanceToGoal" feature
+ap_dtg_schalke <- ingredients::aggregate_profiles(cp_schalke,
+                                                  variables = "distanceToGoal",
+                                                  type = "partial")
+ap_dtg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
+                                                  variables = "distanceToGoal",
+                                                  type = "partial")
+
+# drawing plot of APs for "distanceToGoal" feature
+plot(ap_dtg_schalke, ap_dtg_bayern)
+```
+
+![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/dtg.png)
+
+```{r}
+# creating aggregated profiles for the shots of Schalke 04 and Bayern Munich
+# for "angleToGoal" feature
+ap_atg_schalke <- ingredients::aggregate_profiles(cp_schalke,
+                                                  variables = "angleToGoal",
+                                                  type = "partial")
+ap_atg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
+                                                  variables = "angleToGoal",
+                                                  type = "partial")
+
+# drawing the comparison plot of APs for "angleToGoal" feature
+plot(ap_atg_schalke, ap_atg_bayern)
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/atg.png)
