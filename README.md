@@ -46,7 +46,7 @@ shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
 
 We use the forester [forester](https://github.com/ModelOriented/forester) AutoML tool to train various tree-based classification models from [XGBoost](https://github.com/dmlc/xgboost), [randomForest](https://github.com/ranger/ranger), [LightGBM](https://github.com/microsoft/LightGBM), and [CatBoost](https://github.com/catboost/catboost) libraries. These models do not provide any pre-processing steps like missing data imputation, encoding, or transformation and show quite good performance in the presence of outlier(s) in the dataset which is used to train models. We use the train-test split (80-20) to train and validate the models. Moreover, another advantage of the forester is that provides an easy connection to [DALEX](https://github.com/ModelOriented/DALEX) model explanation and exploration ecosystem.
 
-We changed and expanded some functions of the `forester` package. You can see the reasons for this action below:
+We changed and expanded some functions of the `forester` package, see [Changes](https://github.com/mcavs/Explainable_xG_model_paper/tree/main/Changes). You can see the reasons for this action below:
 
 * The `forester` returns the predicted labels, we changed this with predicted probabilities to calculate the performance metrics which are based on probabilities such as log-loss, Brier score and MCC. 
 * The `forester` returns only the output of the best performing model in terms of the value of intended metric, we expanded it to return the output of all models for comparing their performance with the additional metrics.
