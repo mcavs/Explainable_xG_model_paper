@@ -5,7 +5,11 @@ This repository consists the supplemental materials of the paper "Explainable ex
 
 # Data
 
-We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. 
+We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. The following function is used for scraping the data from leagues over 7 seasons:
+
+```
+ligue1_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2020)
+```
 
 
 # Pre-processing of the raw dataset
