@@ -171,3 +171,53 @@ plot(ap_atg_by, ap_atg_lm, ap_atg_rl)
 ```
 
 ![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_atg.png)
+
+# Figure 5: The behavior comparison of the random forest models trained on original, over-sampled, and under-sampled data in terms of PDP curves
+
+```{r}
+# creating an explainer for the random forest model on the original dataset
+org_rf_explainer <- explain(model = original_model$model3,
+                            data = original_model$test_data[,-1],
+                            y = original_model$test_data$status,
+                            type = "classification",
+                            label = "original data")
+
+# creating an explainer for the random forest model on the under-sampled dataset
+under_rf_explainer <- explain(model = under_model$model3,
+                              data = under_model$test_data[,-1],
+                              y = under_model$test_data$status,
+                              type = "classification",
+                              label = "under-sampled")
+
+# creating an explainer for the random forest model on the over-sampled dataset
+over_rf_explainer <- explain(model = over_model$model3,
+                             data = over_model$test_data[,-1],
+                             y = over_model$test_data$status,
+                             type = "classification",
+                             label = "over-sampled")
+
+# drawing the comparison plot of PDPs for "angleToGoal" feature
+  plot(model_profile(org_rf_explainer, variables = "angleToGoal"),
+     model_profile(under_rf_explainer, variables = "angleToGoal"),
+     model_profile(over_rf_explainer,  variables = "angleToGoal"))
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/angle.png)
+
+```{r}
+# drawing the comparison plot of PDPs for "distanceToGoal" feature
+plot(DALEX::model_profile(org_rf_explainer,   variables = "distanceToGoal"),
+     DALEX::model_profile(under_rf_explainer, variables = "distanceToGoal"),
+     DALEX::model_profile(over_rf_explainer,  variables = "distanceToGoal"))
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/distance.png)
+
+```{r}
+# drawing the comparison plot of PDPs for "minute" feature
+plot(DALEX::model_profile(org_rf_explainer,   variables = "minute"),
+     DALEX::model_profile(under_rf_explainer, variables = "minute"),
+     DALEX::model_profile(over_rf_explainer,  variables = "minute"))
+```
+
+![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/minute.png)
