@@ -52,6 +52,8 @@ We changed and expanded some functions of the `forester` package. You can see th
 * The `forester` returns only the output of the best performing model in terms of the value of intended metric, we expanded it to return the output of all models for comparing their performance with the additional metrics.
 * After under-sample the dataset, the `ranger` changes the reference class in the model and causes a inconsistency. Thus, we add an argument to the `make_ranger` and `forester` functions to control the reference class. 
 
+You can find the R codes of modeling part in [Rcodes.rmd](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Rcodes.Rmd).
+
 
 ## Figures
 
