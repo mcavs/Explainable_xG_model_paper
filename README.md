@@ -3,19 +3,19 @@
 This repository consists the supplemental materials of the paper "Explainable expected goal models for performance analysis in football analytics" to reproduce the results given in.
 
 
-## Changes made on {forester}
+# Changes made on {forester}
 
 * 1
 * 2
 * 3
 * 4
 
-## Data
+# Data
 
 We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. 
 
 
-## Pre-processing of the raw dataset
+# Pre-processing of the raw dataset
 
 This section introduces the dataset and how it is pre-processed. First data is imported from a .csv file is `raw_data`, then the features `distanceToGoal` and `angleToGoal` are extracted from the coordinated `X` and `Y`. The features `status`, `distanceToGoal`, `angleToGoal`, `h_a`, `shotType`, `lastAction`, `minute`, `league`, and `season` are prepared for analysis and modeling.
 
@@ -35,8 +35,9 @@ shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
          distanceToGoal, angleToGoal, league, season, match_id, result, player_id)
 ```
 
+# Figures
 
-## Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues
+## Figure 1: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues
 
 ```
 shot_vis <- data.frame(sta = as.factor(rep(shot_stats$status, 2)),
