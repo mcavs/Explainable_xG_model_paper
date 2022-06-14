@@ -3,7 +3,7 @@
 This repository consists the supplemental materials of the paper "Explainable expected goal models for performance analysis in football analytics". First 
 
 
-# Data
+## Data
 
 We focus in our paper on 315,430 shots-related event data (containing 33,656 goals $\sim 10.66\%$ of total shots) from the 12,655 matches in 7 seasons between 2014-15 and 2020-21 from the top-five European football leagues which are Serie A, Bundesliga, La Liga, English Premier League, Ligue 1. The dataset is collected from [Understat](https://understat.com) by using the R-package [worldfootballR](https://github.com/JaseZiv/worldfootballR) and excluded the 1,012 shots resulting in own goals due to their unrelated pattern from the concept of the model. The following function is used for scraping the data from the leagues over 7 seasons:
 
@@ -23,7 +23,7 @@ dataset <- rbind(ligue1_2020_shot_location, ligue1_2019_shot_location, ...)
 Do not forget that this steps takes a few hours depending on the processing power of your computer!
 
 
-# Pre-processing of the raw dataset
+## Pre-processing of the raw dataset
 
 This section introduces the dataset and how it is pre-processed. First data is imported from a .csv file is `raw_data`, then the features `distanceToGoal` and `angleToGoal` are extracted from the coordinated `X` and `Y`. The features `status`, `distanceToGoal`, `angleToGoal`, `h_a`, `shotType`, `lastAction`, `minute`, `league`, and `season` are prepared for analysis and modeling.
 
@@ -42,7 +42,7 @@ shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
 ```
 
 
-# Modeling
+## Modeling
 
 We use the forester [forester](https://github.com/ModelOriented/forester) AutoML tool to train various tree-based classification models from [XGBoost](https://github.com/dmlc/xgboost), [randomForest](https://github.com/ranger/ranger), [LightGBM](https://github.com/microsoft/LightGBM), and [CatBoost](https://github.com/catboost/catboost) libraries. These models do not provide any pre-processing steps like missing data imputation, encoding, or transformation and show quite good performance in the presence of outlier(s) in the dataset which is used to train models. We use the train-test split (80-20) to train and validate the models. Moreover, another advantage of the forester is that provides an easy connection to [DALEX](https://github.com/ModelOriented/DALEX) model explanation and exploration ecosystem.
 
@@ -53,9 +53,9 @@ We changed and expanded some functions of the `forester` package. You can see th
 * After under-sample the dataset, the `ranger` changes the reference class in the model and causes a inconsistency. Thus, we add an argument to the `make_ranger` and `forester` functions to control the reference class. 
 
 
-# Figures
+## Figures
 
-## Figure 1: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues
+### Figure 1: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues
 
 ```
 shot_vis <- data.frame(sta = as.factor(rep(shot_stats$status, 2)),
@@ -89,7 +89,7 @@ ggplot(shot_vis,
 ![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/shot_dist.png)
 
 
-## Figure 3: The aggregated xG profiles of Schalke 04 and Bayern Munich for angle and distance to goal in the match is played on Jan 24, 2021
+### Figure 3: The aggregated xG profiles of Schalke 04 and Bayern Munich for angle and distance to goal in the match is played on Jan 24, 2021
 
 ```{r}
 # subsetting the shots of Schalke 04 and Bayern Munich
@@ -138,7 +138,7 @@ plot(ap_atg_schalke, ap_atg_bayern)
 ![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/atg.png)
 
 
-## Figure 4: The End-of-season statistics of Burak Yilmaz (BY), Lionel Messi (LM), and Robert Lewandowski (RL) in the season of 2020-21
+### Figure 4: The End-of-season statistics of Burak Yilmaz (BY), Lionel Messi (LM), and Robert Lewandowski (RL) in the season of 2020-21
 
 ```{r}
 # subsetting the shots of Burak Yilmaz (by), Lionel Messi (lm) and Robert Lewandowski (rl) in the season of 2020-21
@@ -197,7 +197,7 @@ plot(ap_atg_by, ap_atg_lm, ap_atg_rl)
 
 ![](https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/player_atg.png)
 
-# Figure 5: The behavior comparison of the random forest models trained on original, over-sampled, and under-sampled data in terms of PDP curves
+### Figure 5: The behavior comparison of the random forest models trained on original, over-sampled, and under-sampled data in terms of PDP curves
 
 ```{r}
 # creating an explainer for the random forest model on the original dataset
