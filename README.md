@@ -61,3 +61,4 @@ ggplot(shot_vis,
              scales="free_x") 
 ```
 
+![Figure: The distribution of angle to goal and distance to goal of shots regarding goal status in the last seven seasons of top-five European football leagues]()
