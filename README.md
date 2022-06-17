@@ -2,6 +2,17 @@
 
 This repository consists the supplemental materials of the paper "Explainable expected goal models for performance analysis in football analytics". 
 
+If you use the paper or codes, please cite it:
+
+```
+@preprint{,
+    title = {Explainable expected goal models for performance analysis in football analytics},
+    author = {Mustafa Cavus and Przemysław Biecek},
+    year = {2022},
+    url = {https://arxiv.org/abs/2206.07212},
+  }
+```
+
 
 ## Data
 
