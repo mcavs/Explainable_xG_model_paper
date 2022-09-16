@@ -269,7 +269,7 @@ plot(DALEX::model_profile(org_rf_explainer,   variables = "minute"),
 
 <img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/minute.png" width="600">
 
-# Repo versions
+## Repo version
 
 Created: June 17, 2022
 Updated: Sep 16, 2022
