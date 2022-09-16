@@ -119,8 +119,8 @@ This section introduces the dataset and how it is pre-processed. First data is i
 ```{r include=FALSE}
 shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
   mutate(status = ifelse(result == "Goal", 1, 0)) %>%
-  mutate(distanceToGoal = sqrt((105 - (X * 105)) ^ 2 + (32.5 - (Y * 68)) ^ 2)) %>%
-  mutate(angleToGoal = abs(atan((7.32 * (105 - (X * 105))) / ((105 - (X * 105))^2 + (32.5 - (Y * 68)) ^ 2 - (7.32 / 2) ^ 2)) * 180 / pi)) %>%
+  mutate(distanceToGoal = sqrt((105 - (X * 105)) ^ 2 + (34 - (Y * 68)) ^ 2)) %>%
+  mutate(angleToGoal = abs(atan((7.32 * (105 - (X * 105))) / ((105 - (X * 105))^2 + (34 - (Y * 68)) ^ 2 - (7.32 / 2) ^ 2)) * 180 / pi)) %>%
   mutate(h_a = factor(h_a),
          situation = factor(situation),
          shotType = factor(shotType),
@@ -424,7 +424,19 @@ ap_dtg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
                                                   type = "partial")
 
 # drawing plot of APs for "distanceToGoal" feature
-plot(ap_dtg_schalke, ap_dtg_bayern)
+plot(ap_dtg_schalke, ap_dtg_bayern)  + 
+ geom_vline(xintercept = mean(selected_observations_schalke$distanceToGoal), 
+            linetype = "dotted", size = 1, color = "#8dd0bf") + 
+ geom_vline(xintercept = mean(selected_observations_bayern$distanceToGoal), 
+            linetype = "dotted", size = 1, color = "#3d50af") + 
+ annotate(geom = "text", x = mean(selected_observations_schalke$distanceToGoal) + 4, 
+          y = 0.015, 
+          label = round(mean(selected_observations_schalke$distanceToGoal), 2), 
+          color = "#8dd0bf") + 
+ annotate(geom = "text", x = mean(selected_observations_bayern$distanceToGoal) - 4, 
+          y = 0.015, 
+          label = round(mean(selected_observations_bayern$distanceToGoal), 2), 
+          color = "#3d50af")
 ```
 
 ```{r}
@@ -438,7 +450,19 @@ ap_atg_bayern  <- ingredients::aggregate_profiles(cp_bayern,
                                                   type = "partial")
 
 # drawing the comparison plot of APs for "angleToGoal" feature
-plot(ap_atg_schalke, ap_atg_bayern)
+plot(ap_atg_schalke, ap_atg_bayern)  + 
+ geom_vline(xintercept = mean(selected_observations_schalke$angleToGoal), 
+            linetype = "dotted", size = 1, color = "#8dd0bf") + 
+ geom_vline(xintercept = mean(selected_observations_bayern$angleToGoal), 
+            linetype = "dotted", size = 1, color = "#3d50af") + 
+ annotate(geom = "text", x = mean(selected_observations_schalke$angleToGoal) - 4, 
+          y = 0.015, 
+          label = round(mean(selected_observations_schalke$angleToGoal), 2), 
+          color = "#8dd0bf") + 
+ annotate(geom = "text", x = mean(selected_observations_bayern$angleToGoal) + 4, 
+          y = 0.015, 
+          label = round(mean(selected_observations_bayern$angleToGoal), 2), 
+          color = "#3d50af")
 ```
 
 
@@ -482,7 +506,25 @@ ap_dtg_rl <- aggregate_profiles(cp_rl,
                                 type = "partial")
 
 # drawing the comparison plot of APs for "distanceToGoal" feature
-plot(ap_dtg_by, ap_dtg_lm, ap_dtg_rl)
+plot(ap_dtg_by, ap_dtg_lm, ap_dtg_rl) + 
+    geom_vline(xintercept = mean(selected_observations_by$distanceToGoal), 
+               linetype = "dotted", size = 1, color = "#3d50af") + 
+    geom_vline(xintercept = mean(selected_observations_lm$distanceToGoal), 
+               linetype = "dotted", size = 1, color = "#e95d7a") + 
+    geom_vline(xintercept = mean(selected_observations_rl$distanceToGoal), 
+               linetype = "dotted", size = 1, color = "#8dd0bf") + 
+    annotate(geom = "text", x = mean(selected_observations_by$distanceToGoal) + 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_by$distanceToGoal), 2), 
+             color = "#3d50af") + 
+    annotate(geom = "text", x = mean(selected_observations_lm$distanceToGoal) - 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_lm$distanceToGoal), 2), 
+             color = "#e95d7a") + 
+    annotate(geom = "text", x = mean(selected_observations_rl$distanceToGoal) - 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_rl$distanceToGoal), 2), 
+             color = "#8dd0bf")
 ```
 
 ```{r}
@@ -500,7 +542,25 @@ ap_atg_rl <- aggregate_profiles(cp_rl,
                                 type = "partial")
 
 # drawing the comparison plot of APs for "angleToGoal" feature
-plot(ap_atg_by, ap_atg_lm, ap_atg_rl)
+plot(ap_atg_by, ap_atg_lm, ap_atg_rl) + 
+    geom_vline(xintercept = mean(selected_observations_by$angleToGoal), 
+               linetype = "dotted", size = 1, color = "#3d50af") + 
+    geom_vline(xintercept = mean(selected_observations_lm$angleToGoal), 
+               linetype = "dotted", size = 1, color = "#e95d7a") + 
+    geom_vline(xintercept = mean(selected_observations_rl$angleToGoal), 
+               linetype = "dotted", size = 1, color = "#8dd0bf") + 
+    annotate(geom = "text", x = mean(selected_observations_by$angleToGoal) + 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_by$angleToGoal), 2), 
+             color = "#3d50af") + 
+    annotate(geom = "text", x = mean(selected_observations_lm$angleToGoal) - 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_lm$angleToGoal), 2), 
+             color = "#e95d7a") + 
+    annotate(geom = "text", x = mean(selected_observations_rl$angleToGoal) + 3, 
+             y = 0.015, 
+             label = round(mean(selected_observations_rl$angleToGoal), 2), 
+             color = "#8dd0bf")
 ```
 
 
