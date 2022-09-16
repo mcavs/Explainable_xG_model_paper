@@ -45,8 +45,8 @@ This section introduces the dataset and how it is pre-processed. First data is i
 ```
 shot_stats <- dataset %>% filter(result != "OwnGoal") %>%
   mutate(status = ifelse(result == "Goal", 1, 0)) %>%
-  mutate(distanceToGoal = sqrt((105 - (X * 105)) ^ 2 + (32.5 - (Y * 68)) ^ 2)) %>%
-  mutate(angleToGoal = abs(atan((7.32 * (105 - (X * 105))) / ((105 - (X * 105))^2 + (32.5 - (Y * 68)) ^ 2 - (7.32 / 2) ^ 2)) * 180 / pi)) %>%
+  mutate(distanceToGoal = sqrt((105 - (X * 105)) ^ 2 + (34 - (Y * 68)) ^ 2)) %>%
+  mutate(angleToGoal = abs(atan((7.32 * (105 - (X * 105))) / ((105 - (X * 105))^2 + (34 - (Y * 68)) ^ 2 - (7.32 / 2) ^ 2)) * 180 / pi)) %>%
   mutate(h_a = factor(h_a),
          situation = factor(situation),
          shotType = factor(shotType),
@@ -268,3 +268,8 @@ plot(DALEX::model_profile(org_rf_explainer,   variables = "minute"),
 ```
 
 <img src="https://github.com/mcavs/Explainable_xG_model_paper/blob/main/Plots/minute.png" width="600">
+
+# Repo versions
+
+Created: June 17, 2022
+Updated: Sep 16, 2022
