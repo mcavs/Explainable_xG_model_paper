@@ -1,6 +1,6 @@
 # Explainable xG model paper
 
-This repository consists the supplemental materials of the paper "[Explainable expected goal models for performance analysis in football analytics](https://arxiv.org/pdf/2206.07212.pdf)". 
+This repository consists the supplemental materials of the paper "[Explainable expected goal models for performance analysis in football analytics](https://ieeexplore.ieee.org/document/10032440)". 
 
 If you use the paper or codes, please cite it:
 
