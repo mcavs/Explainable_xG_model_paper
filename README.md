@@ -5,16 +5,15 @@ This repository consists the supplemental materials of the paper "[Explainable e
 If you use the paper or codes, please cite it:
 
 ```
-@misc{https://doi.org/10.48550/arxiv.2206.07212,
-  doi = {10.48550/ARXIV.2206.07212},
-  url = {https://arxiv.org/abs/2206.07212},
-  author = {Cavus, Mustafa and Biecek, Przemysław},
-  keywords = {Machine Learning (cs.LG), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Explainable expected goal models for performance analysis in football analytics},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {Creative Commons Attribution 4.0 International}
-  }
+@INPROCEEDINGS{10032440,
+  author={Cavus, Mustafa and Biecek, Przemysław},
+  booktitle={2022 IEEE 9th International Conference on Data Science and Advanced Analytics (DSAA)}, 
+  title={Explainable expected goal models for performance analysis in football analytics}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-9},
+  doi={10.1109/DSAA54385.2022.10032440}}
 ```
 
 
